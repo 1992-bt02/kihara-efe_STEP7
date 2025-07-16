@@ -128,3 +128,39 @@ INNER JOIN (
   FROM orders
   GROUP BY user_id
 ) latest ON o.user_id = latest.user_id AND o.order_date = latest.latest_date;
+-- 設問21
+INSERT INTO users (name, age, gender, created_at)
+VALUES ('中村愛', 25, '女性', '2025-06-01');
+-- 設問22
+INSERT INTO products (name, price)
+VALUES ('エアコン', 60000);
+--設問23
+INSERT INTO orders (order_id, user_id, order_date)
+VALUES (10, 1, '2025-06-10');
+--設問24
+INSERT INTO order_items (order_id, product_id, quantity)
+VALUES (10, 6, 1);
+--設問25
+UPDATE users
+SET age = 24
+WHERE user_id = 1 AND age = 23;
+--設問26
+UPDATE products
+SET price = price * 1.1;
+--設問27
+UPDATE orders
+SET order_date = '2024-05-01'
+WHERE order_date < '2024-05-01';
+--設問28
+DELETE FROM users
+WHERE name = '高橋健一';
+--設問29
+DELETE FROM order_items
+WHERE order_id NOT IN (
+  SELECT order_id FROM orders
+);
+--設問30
+DELETE FROM products
+WHERE product_id NOT IN (
+  SELECT DISTINCT product_id FROM order_items
+);
